@@ -27,6 +27,7 @@ options(htmltools.dir.version = FALSE)
 ### 4. Qu'est-ce que github ?
 ### 5. Exemple d'utilisation de git et github
 
+inspiré de http://product.hubspot.com/blog/git-and-github-tutorial-for-beginners
 
 ---
 class: inverse, center, middle
