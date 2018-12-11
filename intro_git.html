@@ -13,9 +13,9 @@
 class: center, middle, inverse, title-slide
 
 # Introduction à git et Github
-## M2IBM - 2017/2018
+## M2IBM - 2018/2019
 ### Antoine Neuraz
-### 2016/12/12
+### 2018/12/11
 
 ---
 
@@ -30,6 +30,7 @@ class: center, middle, inverse, title-slide
 ### 4. Qu'est-ce que github ?
 ### 5. Exemple d'utilisation de git et github
 
+inspiré de http://product.hubspot.com/blog/git-and-github-tutorial-for-beginners
 
 ---
 class: inverse, center, middle
@@ -288,6 +289,103 @@ git branch
 git checkout master 
 *git merge ma-nouvelle-branche
 ```
+
+---
+# Créer le repo sur Github
+
+&lt;img src="img/new_repo.png" style="display:block;margin:auto;width:80%"&gt;
+
+
+---
+# Créer le repo sur Github (2)
+
+&lt;img src="img/new_repo2.png" style="display:block;margin:auto;width:80%"&gt;
+
+---
+# Mon premier push
+
+## ajouter la source distante (add origin)
+
+```bash
+* git remote add origin &lt;https://github.com/aneuraz/demo.git&gt;
+
+```
+
+## envoyer les infos vers la source distante (push)
+
+```bash
+
+* git push -u origin master
+```
+
+---
+class: inverse, center, middle
+# Oups, j'ai fait une boulette
+
+## https://blog.github.com/2015-06-08-how-to-undo-almost-anything-with-git/
+
+---
+# Afficher l'historique des commits 
+
+```
+* git log
+```
+
+
+```bash
+commit 576bc3569397056b1cff8f16e21fbd47e79c5d57 (HEAD -&gt; master, origin/master, origin/HEAD)
+Author: Antoine Neuraz &lt;antoine.neuraz@gmail.com&gt;
+Date:   Thu Dec 7 16:46:40 2017 +0100
+
+    add source
+
+commit 2e6eacd7f241d16c148e89f3ea8a6c8adf7dceb9
+Author: Antoine Neuraz &lt;antoine.neuraz@gmail.com&gt;
+Date:   Thu Dec 7 16:45:43 2017 +0100
+```
+
+
+
+---
+# Annuler des changements locaux (commits sans push)
+
+## git reset
+
+```
+* git reset &lt;SHA du commit à récupérer&gt;
+```
+Rembobine les commits jusqu'à retrouver le statut du commit sélectionné
+
+__ne supprime pas les modifications du disque__
+
+## git reset --hard
+```
+* git reset --hard &lt;SHA du commit à récupérer&gt;
+```
+__SUPPRIME TOUTES LES MODIFICATIONS DU DISQUE__
+
+
+---
+# Annuler des changements après un push
+
+## git revert 
+
+```
+* git revert &lt;SHA&gt;
+git push
+```
+
+crée un nouveau commit qui fait l'inverse du commit selectionné
+
+
+--
+# Annuler des changements et les mettre dans une nouvelle branche
+
+```
+git branch mabranche 
+git reset --hard origin/master
+git checkout mabranche
+```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
@@ -305,19 +403,30 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

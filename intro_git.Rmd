@@ -1,8 +1,8 @@
 ---
 title: "Introduction à git et Github"
-subtitle: "M2IBM - 2017/2018"
+subtitle: "M2IBM - 2018/2019"
 author: "Antoine Neuraz"
-date: "2016/12/12"
+date: "2018/12/11"
 output:
   xaringan::moon_reader:
     css: ["metropolis","metropolis-fonts", "styles.css"]
@@ -279,3 +279,96 @@ git checkout master
 *git merge ma-nouvelle-branche
 ```
 
+---
+# Créer le repo sur Github
+
+<img src="img/new_repo.png" style="display:block;margin:auto;width:80%">
+
+
+---
+# Créer le repo sur Github (2)
+
+<img src="img/new_repo2.png" style="display:block;margin:auto;width:80%">
+
+---
+# Mon premier push
+
+## ajouter la source distante (add origin)
+```{bash, eval = F}
+* git remote add origin <https://github.com/aneuraz/demo.git>
+
+```
+
+## envoyer les infos vers la source distante (push)
+```{bash, eval = F}
+
+* git push -u origin master
+```
+
+---
+class: inverse, center, middle
+# Oups, j'ai fait une boulette
+
+## https://blog.github.com/2015-06-08-how-to-undo-almost-anything-with-git/
+
+---
+# Afficher l'historique des commits 
+
+```
+* git log
+```
+
+```{bash, eval = F}
+commit 576bc3569397056b1cff8f16e21fbd47e79c5d57 (HEAD -> master, origin/master, origin/HEAD)
+Author: Antoine Neuraz <antoine.neuraz@gmail.com>
+Date:   Thu Dec 7 16:46:40 2017 +0100
+
+    add source
+
+commit 2e6eacd7f241d16c148e89f3ea8a6c8adf7dceb9
+Author: Antoine Neuraz <antoine.neuraz@gmail.com>
+Date:   Thu Dec 7 16:45:43 2017 +0100
+```
+
+
+
+---
+# Annuler des changements locaux (commits sans push)
+
+## git reset
+
+```
+* git reset <SHA du commit à récupérer>
+```
+Rembobine les commits jusqu'à retrouver le statut du commit sélectionné
+
+__ne supprime pas les modifications du disque__
+
+## git reset --hard
+```
+* git reset --hard <SHA du commit à récupérer>
+```
+__SUPPRIME TOUTES LES MODIFICATIONS DU DISQUE__
+
+
+---
+# Annuler des changements après un push
+
+## git revert 
+
+```
+* git revert <SHA>
+git push
+```
+
+crée un nouveau commit qui fait l'inverse du commit selectionné
+
+
+--
+# Annuler des changements et les mettre dans une nouvelle branche
+
+```
+git branch mabranche 
+git reset --hard origin/master
+git checkout mabranche
+```
